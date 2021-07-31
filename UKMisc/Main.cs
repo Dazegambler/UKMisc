@@ -103,7 +103,7 @@ namespace UKMisc
             {
                 case true:
                     var As = GameObject.Find("GameController").GetComponent<AssistController>();
-                    if (As.cheatsEnabled != true || As.majorEnabled != true)
+                    if (As.cheatsEnabled != true && As.majorEnabled != true)
                     {
                         Warning();
                         _hookrdy = false;
