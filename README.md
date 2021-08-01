@@ -2,7 +2,7 @@
 Welcome to my main Ultrakill mod , where mod ideas that  are WIP or not good enough for their own mods go.
 # Current Options
 
-TEST MOD:Nothing Currently;
+TEST MOD:Health drain on inactivity;
 
 GAME MODIFIERS:
 
