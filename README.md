@@ -2,13 +2,15 @@
 Welcome to my main Ultrakill mod , where mod ideas that  are WIP or not good enough for their own mods go.
 # Current Options
 
-TEST MOD:Health drain on inactivity;
+TEST MOD:Nothing;
 
 GAME MODIFIERS:
 
   -Sand Mode:Sandifies Every Enemy;
   
   -Vampire Hook:Allows life Steal from Hooked Enemy(MUST HAVE MAJOR ASSISTS/CHEATS ACTIVATED TO USE)
+  
+  -Speed Multiplier(WIP-configurable through changing the .config file...check Configuration)
   
 TOOLS:
 
