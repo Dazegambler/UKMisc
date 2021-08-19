@@ -28,6 +28,8 @@ MUST USE 64 BIT VERSION OF BEPINEX 5
 
 Drop the UKMisc.Dll to your BepInEx/plugins File.
 
+LINK TO UKMISC.DLL:https://github.com/Dazegambler/UKMisc/releases
+
 # Configuration
 
 You can use any Text Editor to change the .config file but i highly recommend using the plugin linked below for not needing to restart your game everytime:
