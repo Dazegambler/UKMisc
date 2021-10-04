@@ -1,4 +1,4 @@
-UKMisc/bin
-UKMisc/.vs
-UKMisc/obj
-UKMisc/lib/Assembly-CSharp.dll
+bin
+.vs
+obj
+lib/Assembly-CSharp.dll
