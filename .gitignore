@@ -1,6 +1,4 @@
-bin
-.vs
-.idea
-obj
-lib/Assembly-CSharp.dll
-*.Dotsettings.user
+UKMisc/bin
+UKMisc/.vs
+UKMisc/obj
+UKMisc/lib/Assembly-CSharp.dll
