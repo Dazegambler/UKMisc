@@ -63,9 +63,9 @@ namespace UKMisc.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Byte[].
         /// </summary>
-        internal static byte[] uibundle {
+        internal static byte[] ukmisc {
             get {
-                object obj = ResourceManager.GetObject("uibundle", resourceCulture);
+                object obj = ResourceManager.GetObject("ukmisc", resourceCulture);
                 return ((byte[])(obj));
             }
         }
