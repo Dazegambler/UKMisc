@@ -20,13 +20,13 @@ namespace UKMiscRevamp
         {
             if(Current.name != "Intro")
             {
-                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.SpeedMod>().enabled = false;
-                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.SandMode>().enabled = false;
-                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.VampHook>().enabled = false;
-                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.SpeedMod>().enabled = false;
-                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.TestModifier>().enabled = false;
-                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.FrictionMod>().enabled = false;
-                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<MiscUI>().enabled = false;
+                //if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<T>(out var a) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<T>().enabled = false;
+                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<MiscUI>(out var g) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<MiscUI>().enabled = false;
+                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<Modifiers.TestModifier>(out var f) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.TestModifier>().enabled = false;
+                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<Modifiers.FrictionMod>(out var e) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.FrictionMod>().enabled = false;
+                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<Modifiers.VampHook>(out var d) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent <Modifiers.VampHook>().enabled = false;
+                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent <Modifiers.SandMode>(out var c) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.SandMode>().enabled = false;
+                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<Modifiers.SpeedMod>(out var b) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.SpeedMod>().enabled = false;
             }
         }
         public void Update()
@@ -35,10 +35,10 @@ namespace UKMiscRevamp
             if(SceneManager.GetActiveScene().name != "Intro")
             {
                 Invoke("findEnemies", .2f);
-                if (Input.GetKeyDown(KeyCode.K)) 
+                if (Input.GetKeyDown(KeyCode.T)) 
                 {
-                    MonoSingleton<NewMovement>.Instance.gameObject.GetComponent<MiscUI>().Active 
-                        = !MonoSingleton<NewMovement>.Instance.gameObject.GetComponent<MiscUI>().Active;
+                    MonoSingleton<NewMovement>.Instance.gameObject.GetComponent<MiscUI>().enabled 
+                        = !MonoSingleton<NewMovement>.Instance.gameObject.GetComponent<MiscUI>().enabled;
                 } 
 
                 if (MonoSingleton<Modifiers.SpeedMod>.Instance.isActiveAndEnabled == false)

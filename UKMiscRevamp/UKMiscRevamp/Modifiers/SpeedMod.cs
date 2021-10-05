@@ -10,10 +10,13 @@ namespace UKMiscRevamp.Modifiers
     class SpeedMod : MonoSingleton<SpeedMod>
     {
         public float
-            spd,
-            jump;
+            spd = 750,
+            jump = 90;
 
         void Start()
+        {
+        }
+        void Update()
         {
             MonoSingleton<NewMovement>.Instance.walkSpeed = spd;
             MonoSingleton<NewMovement>.Instance.jumpPower = jump;
