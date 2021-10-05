@@ -5,41 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace UKMiscRevamp
+namespace UKMiscRevamp.Modifiers
 {
-    class SandMode : MonoBehaviour
+    class SandMode : MonoSingleton<SandMode>
     {
-        private void Sand()
+        void Start()
         {
-            switch (Objects)
+
+        }
+        private void Update()
+        {
+            foreach (EnemyIdentifier eid in FindObjectsOfType<EnemyIdentifier>())
             {
-                case null:
-                    break;
-                default:
-                    foreach (GameObject Obj in Enemies)
+                try
+                {
+                    if(eid.sandified == false)
                     {
-                        try
-                        {
-                            var eid = Obj.GetComponent<EnemyIdentifier>();
-                            switch (eid.sandified)
-                            {
-                                case true:
-                                    break;
-                                default:
-                                    eid.Sandify();
-                                    break;
-                            }
-                        }
-                        catch (NullReferenceException)
-                        {
-                            Debug.LogWarning("INVALID OBJECT FOUND...Deleting Array");
-                            foreach (GameObject _obj in Enemies)
-                            {
-                                Enemies.Remove(_obj);
-                            }
-                        }
+                        eid.Sandify();
                     }
-                    break;
+                }
+                catch
+                {
+                }
             }
         }
     }

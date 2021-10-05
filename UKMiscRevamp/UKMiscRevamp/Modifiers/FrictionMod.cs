@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace UKMiscRevamp
+namespace UKMiscRevamp.Modifiers
 {
-    class FrictionMod : MonoBehaviour
+    class FrictionMod : MonoSingleton<FrictionMod>
     {
-        void Awake()
+        void Start()
         {
         }
         

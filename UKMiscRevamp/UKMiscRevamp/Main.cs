@@ -16,9 +16,22 @@ namespace UKMiscRevamp
         public void Start()
         {
         }
+        void OnSceneLoaded(Scene Current,LoadSceneMode mode)
+        {
+            if(Current.name != "Intro")
+            {
+                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.SpeedMod>().enabled = false;
+                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.SandMode>().enabled = false;
+                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.VampHook>().enabled = false;
+                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.SpeedMod>().enabled = false;
+                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.TestModifier>().enabled = false;
+                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.FrictionMod>().enabled = false;
+                MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<MiscUI>().enabled = false;
+            }
+        }
         public void Update()
         {
-
+            SceneManager.sceneLoaded += OnSceneLoaded;
             if(SceneManager.GetActiveScene().name != "Intro")
             {
                 Invoke("findEnemies", .2f);
@@ -28,7 +41,7 @@ namespace UKMiscRevamp
                         = !MonoSingleton<NewMovement>.Instance.gameObject.GetComponent<MiscUI>().Active;
                 } 
 
-                if (MonoSingleton<NewMovement>.Instance.GetComponent<SpeedMod>().isActiveAndEnabled == false)
+                if (MonoSingleton<Modifiers.SpeedMod>.Instance.isActiveAndEnabled == false)
                 {
                     MonoSingleton<NewMovement>.Instance.walkSpeed = 750f;
                     MonoSingleton<NewMovement>.Instance.jumpPower = 90;

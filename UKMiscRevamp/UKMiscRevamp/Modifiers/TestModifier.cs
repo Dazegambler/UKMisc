@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace UKMiscRevamp
+namespace UKMiscRevamp.Modifiers
 {
-    class TestModifier : MonoBehaviour
+    class TestModifier : MonoSingleton<TestModifier>
     {
-        void Awake()
+        void Start()
         {
 
         }

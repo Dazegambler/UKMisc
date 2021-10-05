@@ -5,11 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace UKMiscRevamp
+namespace UKMiscRevamp.Modifiers
 {
-    class SpeedMod : MonoBehaviour
+    class SpeedMod : MonoSingleton<SpeedMod>
     {
-        private void Speed(float spd, float jump)
+        public float
+            spd,
+            jump;
+
+        void Start()
         {
             MonoSingleton<NewMovement>.Instance.walkSpeed = spd;
             MonoSingleton<NewMovement>.Instance.jumpPower = jump;
