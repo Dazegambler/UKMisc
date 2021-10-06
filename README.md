@@ -35,7 +35,7 @@ https://github.com/BepInEx/BepInEx.ConfigurationManager
 
 # Usage
 
-Press K to Open the Mod Menu
+Press J to Open the Mod Menu
 
 # Building
 
