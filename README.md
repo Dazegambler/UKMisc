@@ -26,9 +26,9 @@ https://docs.bepinex.dev/master/articles/user_guide/installation/unity_mono.html
 
 MUST USE 64 BIT VERSION OF BEPINEX 5
 
-Drop the UKMisc.Dll to your BepInEx/plugins File.
+Drop the UKMiscRrevamped.Dll to your BepInEx/plugins File.
 
-LINK TO UKMISC.DLL:https://github.com/Dazegambler/UKMisc/releases
+LINK TO UKMISCREVAMPED.DLL:https://github.com/Dazegambler/UKMisc/releases
 
 # Configuration
 
