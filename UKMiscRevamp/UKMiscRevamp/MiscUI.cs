@@ -18,7 +18,42 @@ namespace UKMiscRevamp
             SpeedWindow = new Rect(Screen.width / 1.275f,Screen.width/1920, 400,100),
             window = new Rect(60/Screen.width,400/Screen.height,200,210);
 
+        VampHook
+            vamp;
+        SpeedMod
+            speed;
+        SandMode
+            sand;
+        FrictionMod
+            friction;
+        TestModifier
+            test;
+
+        string
+            vamptxt,
+            sandtxt,
+            frictiontxt,
+            testtxt;
+
+        AssistController
+            Ac;
+
         void Awake()
+        {
+            Initialize();
+        }
+
+        public void Initialize()
+        {
+            vamp = VampHook.Instance;
+            speed = SpeedMod.Instance;
+            sand = SandMode.Instance;
+            friction = FrictionMod.Instance;
+            test = TestModifier.Instance;
+            Ac = AssistController.Instance;
+        }
+
+        void Update()
         {
         }
 
@@ -30,36 +65,51 @@ namespace UKMiscRevamp
             {
                 GUI.Window(875,window, UI,"UKMisc 3.0.0");
 
-                if (MonoSingleton<SandMode>.Instance.isActiveAndEnabled == true)
+                if (sand.Active == true)
                 {
-                    Text(35, "Sand Mode ON", new Rect(8/Screen.width,10, 1000,1000),"white");
+                    sandtxt = "<color=lime>[</color><color=yellow>SAND</color> mode<color=lime>]</color>";
+                    //Text(35, "<size=10>Sand Mode ON</size>", new Rect(8/Screen.width,0, 1000,1000),"white");
+                }
+                else
+                {
+                    sandtxt = "<color=red>[</color><color=yellow>SAND</color> mode<color=red>]</color>";
+
                 }
 
-                if(MonoSingleton<TestModifier>.Instance.isActiveAndEnabled == true)
+                if (test.Active == true)
                 {
-                    Text(35, "Test Mode ON", new Rect(8/Screen.width,130, 1000, 1000), "white");
+                    testtxt = "<color=lime>[</color>Test Mode<color=lime>]</color>";
+                    //Text(35, "<size=10>Test Mode ON</size>", new Rect(8/Screen.width,30, 1000, 1000), "white");
+                }
+                else
+                {
+                    testtxt = "<color=red>[</color>Test Mode<color=red>]</color>";
                 }
 
-                if (MonoSingleton<VampHook>.Instance.isActiveAndEnabled == true)
+                if (vamp.Active == true)
                 {
-                    if (MonoSingleton<AssistController>.Instance.cheatsEnabled != true
-                        && MonoSingleton<AssistController>.Instance.majorEnabled != true)
+                    if (Ac.cheatsEnabled != true && Ac.majorEnabled != true)
                     {
                         Invoke("Warning",.15f);
+                        vamp.Active = false;
                     }
                     else
                     {
-                        Text(35, "Vampire Mode ON", new Rect(8/Screen.width,160, 1000, 1000), "white");
+                        vamptxt = "<color=lime>[</color><color=maroon>Vampire</color> Hook<color=lime>]</color>";
+                        //Text(35, "<>Vampire Mode ON", new Rect(8/Screen.width,60, 1000, 1000), "white");
                     }
                 }
-
-                if (MonoSingleton<SpeedMod>.Instance.isActiveAndEnabled == true)
+                else
                 {
-                    if (MonoSingleton<AssistController>.Instance.cheatsEnabled != true
-                        && MonoSingleton<AssistController>.Instance.majorEnabled != true)
+                    vamptxt = "<color=red>[</color><color=maroon>Vampire</color> Hook<color=red>]</color>";
+                }
+
+                if (speed.Active == true)
+                {
+                    if (Ac.cheatsEnabled != true && Ac.majorEnabled != true)
                     {
                         Invoke("Warning",.15f);
-                        MonoSingleton<SpeedMod>.Instance.enabled = false;
+                        speed.Active = false;
                     }
                     else
                     {
@@ -67,9 +117,14 @@ namespace UKMiscRevamp
                     }
                 }
 
-                if (MonoSingleton<FrictionMod>.Instance.isActiveAndEnabled == true)
+                if (friction.Active == true)
                 {
-                    Text(35, "Frictionless Mode ON", new Rect(8, 70/Screen.height, 1000, 1000), "white");
+                    frictiontxt = "<color=lime>[</color>Frictionless<color=lime>]</color>";
+                    //Text(35, "Frictionless Mode ON", new Rect(8/Screen.width, 90, 1000, 1000), "white");
+                }
+                else
+                {
+                   frictiontxt = "<color=red>[</color>Frictionless<color=red>]</color>";
                 }
             }
         }
@@ -79,11 +134,11 @@ namespace UKMiscRevamp
             {
                 case 875:
                     //if (GUI.Button(new Rect(5, 40+(30*0), window.width - 10, 30), "")) MonoSingleton<T>.Instance.enabled = !MonoSingleton<T>.Instance.enabled;
-                    if (GUI.Button(new Rect(5, 20, window.width - 10, 30), "Frictionless")) MonoSingleton<FrictionMod>.Instance.enabled = !MonoSingleton<FrictionMod>.Instance.enabled;
-                    if (GUI.Button(new Rect(5, 20+(35*1), window.width - 10, 30), "SAND mode")) MonoSingleton<SandMode>.Instance.enabled = !MonoSingleton<SandMode>.Instance.enabled;
-                    if (GUI.Button(new Rect(5, 20+(35*2), window.width - 10, 30), "SPEED mode")) MonoSingleton<SpeedMod>.Instance.enabled = !MonoSingleton<SpeedMod>.Instance.enabled;
-                    if (GUI.Button(new Rect(5, 20+(35*3), window.width - 10, 30), "Vampire Hook")) MonoSingleton<VampHook>.Instance.enabled = !MonoSingleton<VampHook>.Instance.enabled;
-                    if (GUI.Button(new Rect(5, 20+(35*4), window.width - 10, 30), "Test Mode")) MonoSingleton<TestModifier>.Instance.enabled = !MonoSingleton<TestModifier>.Instance.enabled;
+                    if (GUI.Button(new Rect(5, 20, window.width - 10, 30), frictiontxt)) friction.Active = !friction.Active;
+                    if (GUI.Button(new Rect(5, 20+(35*1), window.width - 10, 30), sandtxt)) sand.Active = !sand.Active;
+                    if (GUI.Button(new Rect(5, 20+(35*2), window.width - 10, 30), "<color=red><i>SPEED</i></color> mode")) speed.Active = !speed.Active;
+                    if (GUI.Button(new Rect(5, 20+(35*3), window.width - 10, 30), vamptxt)) vamp.Active = !vamp.Active;
+                    if (GUI.Button(new Rect(5, 20+(35*4), window.width - 10, 30), testtxt)) test.Active = !test.Active;
                     break;
                 case 1337:
                     SpeedMenu(SpeedWindow);
@@ -91,29 +146,29 @@ namespace UKMiscRevamp
             }
         }
         float
-            _spd = 750,
-            _jump = 90;
+            _spd = 0,
+            _jump = 0;
         void SpeedMenu(Rect pos)
         {
             _spd = GUI.HorizontalSlider(new Rect(5, 40, pos.width - 120, 25), _spd, -100, 100);
             _jump = GUI.HorizontalSlider(new Rect(5, 75, pos.width - 120, 25), _jump, -100, 100);
-            GUI.Label(new Rect(0, -10, 400, 50), $"<size=25><i><color=yellow>SPEED</color></i>:{MonoSingleton<SpeedMod>.Instance.spd}/{MonoSingleton<SpeedMod>.Instance.jump}</size>");
+            GUI.Label(new Rect(0, -10, 400, 50), $"<size=25><i><color=yellow>SPEED</color></i>:{speed.spd}/{speed.jump}</size>");
             if(GUI.Button(new Rect(pos.width / 2 + 125, 0, 75, 25), "Back"))
             {
-                MonoSingleton<SpeedMod>.Instance.enabled = false;
+                speed.Active = false;
             }
             if(GUI.Button(new Rect(pos.width / 2 + 40, 0, 75, 25), "Reset"))
             {
-                MonoSingleton<SpeedMod>.Instance.spd = 750;
-                MonoSingleton<SpeedMod>.Instance.jump = 90;
+                speed.spd = 750;
+                speed.jump = 90;
             }
-            if(GUI.Button(new Rect(pos.width/2+125, 35, 100, 25), $"<size=13>Speed+- {(int)_spd}</size>"))
+            if(GUI.Button(new Rect(pos.width/2+100, 35, 100, 25), $"<size=13>Speed+- {(int)_spd}</size>"))
             {
-                MonoSingleton<SpeedMod>.Instance.spd += (int)_spd;
+                speed.spd += (int)_spd;
             }
-            if(GUI.Button(new Rect(pos.width/2+125, 70, 100, 25), $"<size=13>Jump+- {(int)_jump}</size>"))
+            if(GUI.Button(new Rect(pos.width/2+100, 70, 100, 25), $"<size=13>Jump+- {(int)_jump}</size>"))
             {
-                MonoSingleton<SpeedMod>.Instance.jump += (int)_jump;
+                speed.jump += (int)_jump;
             }
         }
         private void Text(int fntsize, string txt, Rect Pos, string col)

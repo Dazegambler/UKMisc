@@ -9,13 +9,22 @@ namespace UKMiscRevamp.Modifiers
 {
     class FrictionMod : MonoSingleton<FrictionMod>
     {
+        public bool
+            Active;
+
+        NewMovement
+            mov;
         void Start()
         {
+            mov = NewMovement.Instance;
         }
         
         void Update()
         {
-            MonoSingleton<NewMovement>.Instance.jumping = true;
+            if (Active)
+            {
+                mov.jumping = true;
+            }
         }
     }
 }

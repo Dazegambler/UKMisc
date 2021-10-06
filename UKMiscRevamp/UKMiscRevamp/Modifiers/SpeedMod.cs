@@ -9,18 +9,28 @@ namespace UKMiscRevamp.Modifiers
 {
     class SpeedMod : MonoSingleton<SpeedMod>
     {
+        public bool
+            Active;
         public float
-            spd = 750,
-            jump = 90;
+            spd,
+            jump;
+        NewMovement
+            mov;
 
         void Start()
         {
+            spd = 750;
+            jump = 90;
+            mov = NewMovement.Instance;
         }
         void Update()
         {
-            MonoSingleton<NewMovement>.Instance.walkSpeed = spd;
-            MonoSingleton<NewMovement>.Instance.jumpPower = jump;
-            MonoSingleton<NewMovement>.Instance.wallJumpPower = jump + 60;
+            if (Active)
+            {
+                mov.walkSpeed = spd;
+                mov.jumpPower = jump;
+                mov.wallJumpPower = jump + 60;
+            }
         }
     }
 }

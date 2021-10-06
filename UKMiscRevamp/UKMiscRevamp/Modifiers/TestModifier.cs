@@ -9,13 +9,17 @@ namespace UKMiscRevamp.Modifiers
 {
     class TestModifier : MonoSingleton<TestModifier>
     {
+        public bool Active;
         void Start()
         {
 
         }
         void Update()
         {
+            if (Active)
+            {
 
+            }
         }
     }
 }

@@ -9,23 +9,29 @@ namespace UKMiscRevamp.Modifiers
 {
     class SandMode : MonoSingleton<SandMode>
     {
+
+        public bool
+            Active;
         void Start()
         {
 
         }
         private void Update()
         {
-            foreach (EnemyIdentifier eid in FindObjectsOfType<EnemyIdentifier>())
+            if (Active)
             {
-                try
+                foreach (EnemyIdentifier eid in FindObjectsOfType<EnemyIdentifier>())
                 {
-                    if(eid.sandified == false)
+                    try
                     {
-                        eid.Sandify();
+                        if (eid.sandified == false)
+                        {
+                            eid.Sandify();
+                        }
                     }
-                }
-                catch
-                {
+                    catch
+                    {
+                    }
                 }
             }
         }

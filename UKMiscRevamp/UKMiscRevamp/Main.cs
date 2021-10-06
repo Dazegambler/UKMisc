@@ -12,7 +12,11 @@ namespace UKMiscRevamp
     [BepInPlugin("UK.MISC", "UKMisc", "3.0.0")]
     public class Plugin : BaseUnityPlugin
     {
-         public EnemyIdentifier[] Enemies;
+        Modifiers.SpeedMod
+            spd;
+
+        MiscUI
+            UI;
         public void Start()
         {
         }
@@ -21,12 +25,18 @@ namespace UKMiscRevamp
             if(Current.name != "Intro")
             {
                 //if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<T>(out var a) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<T>().enabled = false;
-                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<MiscUI>(out var g) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<MiscUI>().enabled = false;
-                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<Modifiers.TestModifier>(out var f) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.TestModifier>().enabled = false;
-                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<Modifiers.FrictionMod>(out var e) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.FrictionMod>().enabled = false;
-                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<Modifiers.VampHook>(out var d) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent <Modifiers.VampHook>().enabled = false;
-                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent <Modifiers.SandMode>(out var c) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.SandMode>().enabled = false;
-                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<Modifiers.SpeedMod>(out var b) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.SpeedMod>().enabled = false;
+                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<MiscUI>(out var g) == false) 
+                {
+                    UI = MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<MiscUI>();
+                }
+                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<Modifiers.TestModifier>(out var f) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.TestModifier>();
+                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<Modifiers.FrictionMod>(out var e) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.FrictionMod>();
+                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<Modifiers.VampHook>(out var d) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent <Modifiers.VampHook>();
+                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent <Modifiers.SandMode>(out var c) == false) MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.SandMode>();
+                if (MonoSingleton<NewMovement>.Instance.gameObject.TryGetComponent<Modifiers.SpeedMod>(out var b) == false)
+                {
+                    spd = MonoSingleton<NewMovement>.Instance.gameObject.AddComponent<Modifiers.SpeedMod>();
+                }
             }
         }
         public void Update()
@@ -37,21 +47,16 @@ namespace UKMiscRevamp
                 Invoke("findEnemies", .2f);
                 if (Input.GetKeyDown(KeyCode.T)) 
                 {
-                    MonoSingleton<NewMovement>.Instance.gameObject.GetComponent<MiscUI>().enabled 
-                        = !MonoSingleton<NewMovement>.Instance.gameObject.GetComponent<MiscUI>().enabled;
+                    UI.enabled = !UI.enabled;
                 } 
 
-                if (MonoSingleton<Modifiers.SpeedMod>.Instance.isActiveAndEnabled == false)
+                if (spd.Active == false)
                 {
                     MonoSingleton<NewMovement>.Instance.walkSpeed = 750f;
                     MonoSingleton<NewMovement>.Instance.jumpPower = 90;
                     MonoSingleton<NewMovement>.Instance.wallJumpPower = 150;
                 }
             }
-        }
-        void findEnemies()
-        {
-            Enemies = FindObjectsOfType<EnemyIdentifier>();
         }
     }
 }
