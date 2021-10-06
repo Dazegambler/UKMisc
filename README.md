@@ -10,7 +10,7 @@ GAME MODIFIERS:
   
   -Vampire Hook:Allows life Steal from Hooked Enemy(MUST HAVE MAJOR ASSISTS/CHEATS ACTIVATED TO USE)
   
-  -Speed Multiplier
+  -Speed Multiplier(REQUIRES MAJOR ASSISTS/CHEATS)
   
   -Frictionless movement
   
