@@ -14,9 +14,6 @@ GAME MODIFIERS:
   
   -Frictionless movement
   
-TOOLS:
-
-  -Ammo counter:Displays current Amount of Nails and Heatsinks on your nailgun(Position Configurable);
 
 # Installing
 
